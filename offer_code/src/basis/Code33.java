@@ -19,22 +19,22 @@ import java.util.Queue;
 public class Code33 {
 
     public boolean verifyPostorder(int[] postorder) {
-        return recur(postorder, 0 ,postorder.length-1);
+        return recur(postorder, 0, postorder.length-1);
     }
 
     public boolean recur(int[] pos, int i, int j) {
-        if (i <= j) {
+        if (i >= j) {
             return true;
         }
-        int p = 0;
-        while (pos[i] < pos[j]) {
+        int p = i;
+        while(pos[p] < pos[j]) {
             p++;
         }
         int m = p;
-        while (pos[p] > pos[j]) {
+        while(pos[p] > pos[j]) {
             p++;
         }
-        return p == j && recur(pos, i, m-1) && recur(pos, m, j-1);
+        return p == j && recur(pos, i, m - 1) && recur(pos, m, j - 1);
     }
 
 }
